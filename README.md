@@ -10,7 +10,7 @@ Create a mysql database for this app and leave it empty, or use an existing data
 (If you are using Azure MySQL In App, you will not be able to create a database. You will have to use the default database that is created for you.)<br />
 Take note of the mysql hostname, database name, username and username password.<br />
 Copy the folders and files to a directory under the web root or to the web root itself.<br />
-Run http://website/setup/createtable.php<br />
+Run http://website/setup/createtable.php to create the database table.<br />
 Open http://website/index.php and look at the page.<p>
 
 Invite others to "tag" your wall.<p>
