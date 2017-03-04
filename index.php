@@ -22,9 +22,9 @@
     table { margin-top: 0.75em; margin-left: auto; margin-right: auto; }
     th { font-size: 1.2em; text-align: center; border-bottom: 5px solid DarkRed; padding: .3em; }
     td { padding: .25em 1.5em; text-align: center; border: 0 none; }
-	td.tagger { font-family: 'Margarine';font-size: 30px; color: Gold; text-shadow: 1px 1px Salmon;}
-	td.graffiti { font-family: 'Gloria Hallelujah';font-size: 30px; color: Navy; text-shadow: 1px 1px PaleGreen;}
-//    td { padding: 0.25em 2em 0.25em 0em; border: 0 none; }
+    td.tagger { font-family: 'Margarine';font-size: 30px; color: Gold; text-shadow: 1px 1px Salmon;}
+    td.graffiti { font-family: 'Gloria Hallelujah';font-size: 30px; color: Navy; text-shadow: 1px 1px PaleGreen;}
+
 </style>
 </head>
 <body>
