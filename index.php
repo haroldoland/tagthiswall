@@ -24,7 +24,6 @@
     td { padding: .25em 1.5em; text-align: center; border: 0 none; }
     td.tagger { font-family: 'Margarine';font-size: 30px; color: Gold; text-shadow: 1px 1px Salmon;}
     td.graffiti { font-family: 'Gloria Hallelujah';font-size: 30px; color: Navy; text-shadow: 1px 1px PaleGreen;}
-
 </style>
 </head>
 <body>
@@ -120,9 +119,9 @@ if(!empty($_POST)) {
 try {
     $cl_tagger = $_POST['cl_tagger'];
     $cl_message = $_POST['cl_message'];
-// Sanitize output by stripping HTML characters
-    $taggername =  htmlspecialchars($tagname['tagger']);
-    $taggermessage =  htmlspecialchars($tagname['message']);
+// Sanitize user input data size and strip HTML tags
+    $tagger = strip_tags(substr($cl_tagger, 0, 30));
+    $message = strip_tags(substr($cl_message, 0, 128));
     $date = date("Y-m-d");
 // Insert data
     $sql_insert = "INSERT INTO graffiti_tbl (tagger, message, location, date) 
@@ -152,9 +151,9 @@ if(count($taggers) > 0) {
 //    echo '<th>IP Address</th>';
     echo '<th>Date</th></tr>';
     foreach($taggers as $tagname) {
-// Sanitize output for stripping HTML tags
-    $taggername = strip_tags($tagname['tagger']);
-    $taggermessage = strip_tags($tagname['message']);
+// Sanitize output for stripping HTML special characters
+    $taggername = htmlspecialchars($tagname['tagger']);
+    $taggermessage = htmlspecialchars($tagname['message']);
 // Format the date output
     $taggerdate = date("d M Y",strtotime($tagname['date']));
         echo '<tr><td class="tagger">'.$taggername.'</td>';
