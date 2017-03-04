@@ -136,7 +136,7 @@ try {
 catch(Exception $e) {
     die(var_dump($e));
 }
-echo '<span style="color: Crimson;font-family: \'Gloria Hallelujah\';font-size: 30px;">You have tagged this wall!</span>';
+echo '<span style="color: DarkRed;font-family: \'Gloria Hallelujah\';font-size: 30px;">You have tagged this wall!</span>';
 }
 
 // Code for retrieving data from the database.
