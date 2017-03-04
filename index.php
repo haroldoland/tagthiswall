@@ -120,9 +120,9 @@ if(!empty($_POST)) {
 try {
     $cl_tagger = $_POST['cl_tagger'];
     $cl_message = $_POST['cl_message'];
-// scrub the input to maxlength size
-    $tagger = substr($cl_tagger, 0, 30);
-    $message = substr($cl_message, 0, 128);
+// Sanitize output by stripping HTML characters
+    $taggername =  htmlspecialchars($tagname['tagger']);
+    $taggermessage =  htmlspecialchars($tagname['message']);
     $date = date("Y-m-d");
 // Insert data
     $sql_insert = "INSERT INTO graffiti_tbl (tagger, message, location, date) 
@@ -146,7 +146,7 @@ $stmt = $conn->query($sql_select);
 $taggers = $stmt->fetchAll(); 
 if(count($taggers) > 0) {
     echo '<h2>The following people have tagged this wall:</h2>';
-	echo '<table>';
+    echo '<table>';
     echo '<tr><th>Tagger</th>';
     echo '<th>Message</th>';
 //    echo '<th>IP Address</th>';
