@@ -25,4 +25,4 @@ date: The date of the "tag."<p>
 
 The location field is not displayed by default, but it is there if you would like to share the IP Adress of those who visit and "tag" your wall. Displaying this information to the public may be a cause of concern to some. You can eliminate the lines of code that add it to the database if you feel better about that.<p>
 
-You can see the wall at <a href="http://harold.azurewebsites.net/" target="_new">Tag This Wall!</a><p>
+You can see the wall at <a href="http://harold.azurewebsites.net/">Tag This Wall!</a><p>
