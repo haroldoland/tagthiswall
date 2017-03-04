@@ -16,3 +16,11 @@ Invite others to "tag" your wall.<p>
 
 This project was originally created to be used with Microsoft Azure MySql In App. The files have a section for the Azure In App database connections. You can uncomment them to be used on an Azure website, and comment out the non-Azure database connections.<p>
 
+The createtable.php generates 5 fields:<br />
+PIMARY KEY: Auto Increment field.<br />
+tagger: Holds the "tagger's" name.<br />
+message: Holds the "tag" written.<br />
+location: IP Address of the tagger.<br />
+date: The date of the "tag."<p>
+
+The location field is not displayed by default, but it is there if you would like to share the IP Adress of those who visit and "tag" your wall. Displaying this information to the public may be a cause of concern to some. You can eliminate the lines of code that add it to the database if you feel better about that.
