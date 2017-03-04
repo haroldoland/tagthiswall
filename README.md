@@ -9,8 +9,8 @@ Setup Instructions:<br />
 Create a mysql database for this app and leave it empty. The table will be built from the createtable.php file.<br />
 Take note of the mysql hostname, database name, username and username password.<br />
 Copy the folders and files to a directory under the web root or to the web root itself.<br />
-Run \setup\createtable.php<br />
-Open \index.php and look at the page.<p>
+Run http://website/setup/createtable.php<br />
+Open http://website/index.php and look at the page.<p>
 
 Invite others to "tag" your wall.<p>
 
