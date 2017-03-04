@@ -152,7 +152,7 @@ if(count($taggers) > 0) {
 //    echo '<th>IP Address</th>';
     echo '<th>Date</th></tr>';
     foreach($taggers as $tagname) {
-// Sanitize output against XSS scripts
+// Sanitize output for stripping HTML tags
     $taggername = strip_tags($tagname['tagger']);
     $taggermessage = strip_tags($tagname['message']);
 // Format the date output
