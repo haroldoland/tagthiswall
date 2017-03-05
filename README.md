@@ -6,12 +6,13 @@ This project is designed for basic PHP learning. There are 2 main files:<br />
 \index.php is used to display the "wall" and to allow anyone to "tag" the wall.<p>
 
 Setup Instructions:<br />
-Create a mysql database for this app and leave it empty, or use an existing database. The table for the application will be created by the createtable.php file.<br />
-(If you are using Azure MySQL In App, you will not be able to create a database. You will have to use the default database that is created for you.)<br />
-Take note of the mysql hostname, database name, username and username password.<br />
+Create a mysql database for this app and leave it empty, or use an existing database. If you create a new database, create a user with CREATE, INSERT, and SELECT privileges to the database.<br />
+The table for the application will be created by the createtable.php file.<br />
+(If you are using Azure MySQL In App, you will not be able to create a database. You will have to use the default database and user that is created for you.)<br />
+Take note of the mysql hostname, database name, username and username password. Modify the createtable.php and index.php file to use that information.<br />
 Copy the folders and files to a directory under the web root or to the web root itself.<br />
-Run http://website/setup/createtable.php to create the database table.<br />
-Open http://website/index.php and look at the page.<p>
+Run http://website/setup/createtable.php to create the database table. It will indicate if it is successful.<br />
+Open http://website/index.php and look at the page. This is the only page that the user's will access.<p>
 
 Invite others to "tag" your wall.<p>
 
