@@ -18,7 +18,7 @@ Open http://website/index.php and look at the page. This is the only page that t
 
 <p>This project was originally created to be used with Microsoft Azure MySql In App. The files have a section for the Azure In App database connections. You can uncomment them to be used on an Azure website, and comment out the non-Azure database connections.</p>
 
-<p>The createtable.php generates 5 fields:<br />
+<p>The createtable.php generates a table named graffiti_tbl with 5 columns:<br />
 PIMARY KEY: Auto Increment field.<br />
 tagger: Holds the "tagger's" name.<br />
 message: Holds the "tag" written.<br />
