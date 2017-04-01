@@ -2,6 +2,7 @@
 <head>
 <meta name="keywords" content="digital grafitti, block wall" />
 <meta name="description" content="Tag this wall with digital grafitti." />
+<meta charset="UTF-8">
 <Title>Tag This Wall!</Title>
 <link href="https://fonts.googleapis.com/css?family=Gloria Hallelujah" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Margarine" rel="stylesheet"> 
