@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang = "en">
+<html>
 <head>
     <Title>Tag This Wall!</Title>
     <meta name="keywords" content="digital grafitti, block wall" />
