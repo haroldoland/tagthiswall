@@ -1,44 +1,77 @@
-<html>
+<!DOCTYPE html>
+<html lang = "en">
 <head>
-<meta name="keywords" content="digital grafitti, block wall" />
-<meta name="description" content="Tag this wall with digital grafitti." />
-<meta charset="UTF-8">
-<Title>Tag This Wall!</Title>
-<link href="https://fonts.googleapis.com/css?family=Gloria Hallelujah" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Margarine" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
-<style type="text/css">
-    body { background-image: url("images/blockwall.jpg"); border-top: solid 10px DarkRed;
-		color: WhiteSmoke; font-size: 1.0em; margin: 20; padding: 20;
-        font-family: 'Ubuntu', sans-serif;
-		text-align: center;
-	}
-    .form { width:60%; margin-left: auto; margin-right: auto; padding: 5px;
-			background-color: GhostWhite; border: solid 5px MidnightBlue; color: MidnightBlue;
-			border-radius: 80px; background-image: url("images/tagger.png"); background-repeat: repeat-x;
-			background-position: left center;
-	}
-	h1, h2, h3,{ color: #000; margin-bottom: 0; padding-bottom: 0; }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.75em; }
-    h3 { font-size: 1.2em; }
-    table { margin-top: 0.75em; margin-left: auto; margin-right: auto; }
-    th { font-size: 1.2em; text-align: center; border-bottom: 5px solid DarkRed; padding: .3em; }
-    td { padding: .25em 1.5em; text-align: center; border: 0 none; }
-    td.tagger { font-family: 'Margarine';font-size: 30px; color: Gold; text-shadow: 1px 1px Salmon;}
-    td.graffiti { font-family: 'Gloria Hallelujah';font-size: 30px; color: Navy; text-shadow: 1px 1px PaleGreen;}
-</style>
+    <Title>Tag This Wall!</Title>
+    <meta name="keywords" content="digital grafitti, block wall" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Gloria Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Margarine" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=McLaren" rel="stylesheet"> 
+    <style type="text/css">
+        body { background-image: url("images/blockwall.jpg"); border-top: solid 10px DarkRed;
+	           color: WhiteSmoke; margin: 20; padding: 20; font-family: 'McLaren', sans-serif;
+
+	    }
+        .splash { width:70%; margin-left: auto; margin-right: auto; padding: 5px;
+	        background-color: GhostWhite; border: solid 5px MidnightBlue; color: DarkBlue;
+	        border-radius: 60px; background-image: url("images/tagger.png"); background-repeat: repeat-x;
+	        background-position: left center;
+	    }
+ 	    h1, h2, h3, h4 { margin-bottom: 5; padding-bottom: 5; }
+        table { margin-top: 0.75em; margin-left: auto; margin-right: auto; }
+        th { font-size: 1.2em; text-align: center; border-bottom: 5px solid DarkRed; padding: .3em; }
+        td { padding: .25em 1.5em; text-align: center; border: 0 none; }
+        td.tagger { font-family: 'Margarine';font-size: 30px; color: Gold; text-shadow: 1px 1px Salmon;}
+        td.graffiti { font-family: 'Gloria Hallelujah';font-size: 30px; color: Navy; text-shadow: 1px 1px PaleGreen;}
+    </style>
 </head>
+
 <body>
-<div class="form">
-<h1>Tag this wall!</h1>
-<p>Fill in your tagger name and message, then click <strong>Submit</strong> to tag this wall.</p>
-<form method="post" action="index.php" enctype="multipart/form-data" >
-      Tagger  <input type="text" name="cl_tagger" id="cl_tagger" maxlength="30"/></br>
-      Message <input type="text" name="cl_message" id="cl_message" maxlength="128"/></br>
-      <input type="submit" name="submit" value="Submit" />
+
+<body>
+
+<div class="container-fluid text-center">
+
+<div class="splash">
+<h1><strong>Tag this wall!</strong></h1>
+<h4>Fill in your tagger name and message, then click <strong>Submit</strong> to tag this wall.</h4>
+
+<form class="form-horizontal" action="index.php" method="post" enctype="multipart/form-data">
+
+<div class="form-group <?php echo !empty($cl_taggerError)?'error':'';?>">
+    <label class="col-sm-3 control-label">Tagger</label>
+    <div class="col-sm-7">
+       <input name="cl_tagger" type="text" class="form-control" maxlength="30" placeholder="Tagger Name" value="<?php echo !empty($cl_tagger)?$cl_tagger:'';?>">
+
+                        <?php if (!empty($cl_taggerError)): ?>
+                            <span class="help-inline"><?php echo $cl_taggerError;?></span>
+                        <?php endif; ?>
+
+    </div> <!-- end col-sm-7 -->
+</div> <!-- end form-group -->
+
+<div class="form-group <?php echo !empty($cl_messageError)?'error':'';?>">
+    <label class="col-sm-3 control-label">Message</label>
+    <div class="col-sm-7">
+       <input name="cl_message" type="text" class="form-control" maxlength="128" placeholder="Message" value="<?php echo !empty($cl_message)?$cl_message:'';?>">
+
+                        <?php if (!empty($cl_messageError)): ?>
+                            <span class="help-inline"><?php echo $cl_messageError;?></span>
+                        <?php endif; ?>
+
+    </div> <!-- end col-sm-7 -->
+</div> <!-- end form-group -->
+    
+<div class="form-actions">
+       <button type="submit" class="btn btn-primary">Submit</button>
+</div> <!-- end form-actions -->
+
 </form>
-</div>
+
+</div> <!-- end splash -->
+
 <?php
 
 // ***********************************************
@@ -81,6 +114,15 @@ $db = 'database';
 // End of Azure MySQL In App database connectivity
 // ***********************************************
 
+// Connect to database.
+try {
+    $conn = new PDO( "mysql:host=$host;dbname=$db", $user, $pwd);
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+}
+catch(Exception $e){
+    die(var_dump($e));
+}
+
 // Get User IP Address
 function getUserIP()
 {
@@ -107,40 +149,57 @@ function getUserIP()
 // Output IP address [Ex: 192.168.1.100]
 $location = getUserIP();
 
-
-// Connect to database.
-try {
-    $conn = new PDO( "mysql:host=$host;dbname=$db", $user, $pwd);
-    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-}
-catch(Exception $e){
-    die(var_dump($e));
-}
-
 // Code to for inserting registration into the database.
-if(!empty($_POST)) {
-try {
+if ( !empty($_POST)) {
+    // keep track validation errors
+    $cl_taggerError = null;
+    $cl_messageError = null;
+         
+    // keep track post values
     $cl_tagger = $_POST['cl_tagger'];
     $cl_message = $_POST['cl_message'];
-// Sanitize user input data size and strip HTML tags
-    $tagger = strip_tags(substr($cl_tagger, 0, 30));
-    $message = strip_tags(substr($cl_message, 0, 128));
-    $date = date("Y-m-d");
-// Insert data
-    $sql_insert = "INSERT INTO graffiti_tbl (tagger, message, location, date) 
-                   VALUES (?,?,?,?)";
-    $stmt = $conn->prepare($sql_insert);
-    $stmt->bindValue(1, $tagger);
-    $stmt->bindValue(2, $message);
-    $stmt->bindValue(3, $location);
-    $stmt->bindValue(4, $date);
-    $stmt->execute();
-}
-catch(Exception $e) {
-    die(var_dump($e));
-}
-echo '<span style="color: DarkRed;font-family: \'Gloria Hallelujah\';font-size: 30px;">You have tagged this wall!</span>';
-}
+         
+    // validate input
+    $valid = true;
+
+    if (empty($cl_tagger)) {
+        $cl_taggerError = 'Please enter your tagger name';
+        $valid = false;
+    }
+
+    if (empty($cl_message)) {
+        $cl_messageError = 'Please enter your message';
+        $valid = false;
+    }
+
+    if($valid) {
+        try {
+            $cl_tagger = $_POST['cl_tagger'];
+            $cl_message = $_POST['cl_message'];
+    // Sanitize user input data size and strip HTML tags
+            $tagger = strip_tags(substr($cl_tagger, 0, 30));
+            $message = strip_tags(substr($cl_message, 0, 128));
+            $date = date("Y-m-d");
+    // Insert data
+            $sql_insert = "INSERT INTO graffiti_tbl (tagger, message, location, date) 
+                           VALUES (?,?,?,?)";
+            $stmt = $conn->prepare($sql_insert);
+            $stmt->bindValue(1, $tagger);
+            $stmt->bindValue(2, $message);
+            $stmt->bindValue(3, $location);
+            $stmt->bindValue(4, $date);
+            $stmt->execute();
+        }
+        catch(Exception $e) {
+            die(var_dump($e));
+        }
+
+        echo '<div class="row"><br><div class="col-xs-12 col-md-6 col-md-offset-3"><div class="alert alert-danger">';
+        echo '   <span style="color: DarkRed;font-family: \'Gloria Hallelujah\';font-size: 30px;"><strong>You have tagged this wall!</strong>';
+        echo '</div></div></div> <!-- end alert -->';
+    } // end if valid
+
+} // end if !empty
 
 // Code for retrieving data from the database.
 $sql_select = "SELECT * FROM graffiti_tbl";
@@ -167,9 +226,10 @@ if(count($taggers) > 0) {
      echo '</table>';
 } else {
     echo '<h3>No one has tagged this wall yet.</h3>';
-}
+} //end if count
  
 ?>
+
+</div> <!-- end container-fluid -->
 </body>
 </html>
- 
