@@ -9,18 +9,18 @@
     <link href="https://fonts.googleapis.com/css?family=Margarine" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=McLaren" rel="stylesheet"> 
     <style type="text/css">
-        body { background-image: url("images/blockwall.jpg"); border-top: solid 10px DarkRed;
+        body { background-image: url("images/blockwall.jpg"); border-top: solid 10px Maroon;
 	           color: WhiteSmoke; margin: 20; padding: 20; font-family: 'McLaren', sans-serif;
 
 	    }
         .splash { width:70%; margin-left: auto; margin-right: auto; padding: 5px;
-	        background-color: GhostWhite; border: solid 5px MidnightBlue; color: DarkBlue;
+	        background-color: GhostWhite; border: solid 5px MidnightBlue; color: Maroon;
 	        border-radius: 60px; background-image: url("images/tagger.png"); background-repeat: repeat-x;
 	        background-position: left center;
 	    }
  	    h1, h2, h3, h4 { margin-bottom: 5; padding-bottom: 5; }
         table { margin-top: 0.75em; margin-left: auto; margin-right: auto; }
-        th { font-size: 1.2em; text-align: center; border-bottom: 5px solid DarkRed; padding: .3em; }
+        th { font-size: 1.2em; text-align: center; border-bottom: 5px solid Maroon; padding: .3em; }
         td { padding: .25em 1.5em; text-align: center; border: 0 none; }
         td.tagger { font-family: 'Margarine';font-size: 30px; color: Gold; text-shadow: 1px 1px Salmon;}
         td.graffiti { font-family: 'Gloria Hallelujah';font-size: 30px; color: Navy; text-shadow: 1px 1px PaleGreen;}
@@ -192,7 +192,7 @@ if ( !empty($_POST)) {
         }
 
         echo '<div class="row"><br><div class="col-xs-12 col-md-6 col-md-offset-3"><div class="alert alert-danger">';
-        echo '   <span style="color: DarkRed;font-family: \'Gloria Hallelujah\';font-size: 30px;"><strong>You have tagged this wall!</strong>';
+        echo '   <span style="color: Maroon;font-family: \'Gloria Hallelujah\';font-size: 30px;"><strong>You have tagged this wall!</strong>';
         echo '</div></div></div> <!-- end alert -->';
     } // end if valid
 
