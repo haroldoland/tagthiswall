@@ -73,73 +73,58 @@
 
 // ***********************************************
 // Standard MySQL Connection Strings
+// ***********************************************
 
 // DB connection info
 $host = 'dbhost';
 $user = 'dbusername';
 $pwd = 'dbusernamepassword';
 $db = 'database';
+$port = '3306';
+
+// Connect to database.
+//$conn = new mysqli($host, $user, $pwd, $db, $port);  // For using $port
+$conn = new mysqli($host, $user, $pwd, $db);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+// ***********************************************
 // End of Standard MySQL database connectivity
 // ***********************************************
 
 // ***********************************************
 // Azure MySQL Connection Strings
-// Uncomment the sections below to use on Azure websites with MySQL In App
-// Make sure to comment out the Standard MySQL Connection Strings above
+// ***********************************************
+//*** Uncomment the sections below to use on Azure websites with MySQL In App
+//*** Make sure to comment out the Standard MySQL Connection Strings above
 
-// $connectstr_dbhost = '';
-// $connectstr_dbname = '';
-// $connectstr_dbusername = '';
-// $connectstr_dbpassword = '';
+//$AzureConnString = $_SERVER['MYSQLCONNSTR_localdb'];
+//$AzureConnStringPieces = explode(";", $AzureConnString);
+//foreach ($AzureConnStringPieces as $piece) {
+    //*** Parse each piece of the string creating $Data_Source (Server:Port), $User_Id (Username), $Password, $Database (DBName)
+    //*** IE. Data Source=127.0.0.1:45678 --> $Data_Source = "127.0.0.1:45678"
+//    parse_str($piece);
+//}
 
-// foreach ($_SERVER as $key => $value) {
-//     if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
-//       continue;
-//     }
-    
-//     $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
-//     $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
-//     $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
-//     $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
-// }
+//*** Separate host from port in Data_Source
+//$source = explode(":", $Data_Source);
+//$Host = $source[0];
+//$Port = $source[1];
 
-// DB connection info
-// $host = $connectstr_dbhost;
-// $user = $connectstr_dbusername;
-// $pwd = $connectstr_dbpassword;
-// $db = $connectstr_dbname;
+//*** Create connection
+//$conn = new mysqli($Host, $User_Id, $Password, $Database, $Port);
+//if ($conn->connect_error){
+//    die("Connection failed: " . $conn->connect_error);
+//} 
+// ***********************************************
 // End of Azure MySQL In App database connectivity
 // ***********************************************
-
-// Connect to database.
-try {
-    $conn = new PDO( "mysql:host=$host;dbname=$db", $user, $pwd);
-    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-}
-catch(Exception $e){
-    die(var_dump($e));
-}
 
 // Get User IP Address
 function getUserIP()
 {
-    $client  = @$_SERVER['HTTP_CLIENT_IP'];
-    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-    $remote  = $_SERVER['REMOTE_ADDR'];
-
-    if(filter_var($client, FILTER_VALIDATE_IP))
-    {
-        $ip = $client;
-    }
-    elseif(filter_var($forward, FILTER_VALIDATE_IP))
-    {
-        $ip = $forward;
-    }
-    else
-    {
-        $ip = $remote;
-    }
-
+	$ip = $_SERVER['REMOTE_ADDR']?:($_SERVER['HTTP_X_FORWARDED_FOR']?:$_SERVER['HTTP_CLIENT_IP']);
     return $ip;
 }
 
@@ -170,29 +155,24 @@ if ( !empty($_POST)) {
     }
 
     if($valid) {
-        try {
-            $cl_tagger = $_POST['cl_tagger'];
-            $cl_message = $_POST['cl_message'];
-    // Sanitize user input data size and strip HTML tags
-            $tagger = strip_tags(substr($cl_tagger, 0, 30));
-            $message = strip_tags(substr($cl_message, 0, 128));
-            $date = date("Y-m-d");
-    // Insert data
-            $sql_insert = "INSERT INTO graffiti_tbl (tagger, message, location, date) 
-                           VALUES (?,?,?,?)";
-            $stmt = $conn->prepare($sql_insert);
-            $stmt->bindValue(1, $tagger);
-            $stmt->bindValue(2, $message);
-            $stmt->bindValue(3, $location);
-            $stmt->bindValue(4, $date);
-            $stmt->execute();
-        }
-        catch(Exception $e) {
-            die(var_dump($e));
-        }
+	$cl_tagger = $_POST['cl_tagger'];
+        $cl_message = $_POST['cl_message'];
+
+		// Sanitize user input data size and strip HTML tags
+        $tagger = strip_tags(substr($cl_tagger, 0, 30));
+        $message = strip_tags(substr($cl_message, 0, 128));
+        $date = date("Y-m-d");
+
+        // Insert data
+        $stmt = $conn->prepare("INSERT INTO graffiti_tbl (tagger, message, location, date) 
+                           VALUES (?,?,?,?)");
+        $stmt->bind_param("ssss", $tagger, $message, $location, $date);
+        $stmt->execute();			
+
+        $stmt->close();
 
         echo '<div class="row"><br><div class="col-xs-12 col-md-6 col-md-offset-3"><div class="alert alert-danger">';
-        echo '   <span style="color: Maroon;font-family: \'Gloria Hallelujah\';font-size: 30px;"><strong>You have tagged this wall!</strong>';
+        echo '   <span style="color: DarkRed;font-family: \'Gloria Hallelujah\';font-size: 30px;"><strong>You have tagged this wall!</strong>';
         echo '</div></div></div> <!-- end alert -->';
     } // end if valid
 
@@ -200,33 +180,44 @@ if ( !empty($_POST)) {
 
 // Code for retrieving data from the database.
 $sql_select = "SELECT * FROM graffiti_tbl";
-$stmt = $conn->query($sql_select);
-$taggers = $stmt->fetchAll(); 
-if(count($taggers) > 0) {
+$result = $conn->query($sql_select);
+
+if ($result->num_rows > 0) {
+	// Output taggers
     echo '<h2>The following people have tagged this wall:</h2>';
     echo '<table>';
     echo '<tr><th>Tagger</th>';
     echo '<th>Message</th>';
 //    echo '<th>IP Address</th>';
     echo '<th>Date</th></tr>';
-    foreach($taggers as $tagname) {
-// Sanitize output for stripping HTML special characters
-    $taggername = htmlspecialchars($tagname['tagger']);
-    $taggermessage = htmlspecialchars($tagname['message']);
-// Format the date output
-    $taggerdate = date("d M Y",strtotime($tagname['date']));
+
+	while ($taggers = $result->fetch_assoc()) {
+		
+		// Sanitize output for stripping HTML special characters
+		$taggername = htmlspecialchars($taggers['tagger']);
+		$taggermessage = htmlspecialchars($taggers['message']);
+		
+		// Format the date output
+		$taggerdate = date("d M Y",strtotime($taggers['date']));
         echo '<tr><td class="tagger">'.$taggername.'</td>';
         echo '<td class="graffiti">'.$taggermessage.'</td>';
-//        echo '<td>'.$tagname['location'].'</td>';		
+//        echo '<td>'.$taggers['location'].'</td>';		
         echo '<td>'.$taggerdate.'</td></tr>';
-    }
-     echo '</table>';
-} else {
+		
+		} //end while
+
+	echo '</table>';
+} 
+	else {
     echo '<h3>No one has tagged this wall yet.</h3>';
-} //end if count
+} //end if row count
+
+// close connection
+$conn->close();
  
 ?>
 
 </div> <!-- end container-fluid -->
 </body>
 </html>
+ 
