@@ -158,7 +158,7 @@ if ( !empty($_POST)) {
 	$cl_tagger = $_POST['cl_tagger'];
         $cl_message = $_POST['cl_message'];
 
-		// Sanitize user input data size and strip HTML tags
+	// Sanitize user input data size and strip HTML tags
         $tagger = strip_tags(substr($cl_tagger, 0, 30));
         $message = strip_tags(substr($cl_message, 0, 128));
         $date = date("Y-m-d");
@@ -183,7 +183,7 @@ $sql_select = "SELECT * FROM graffiti_tbl";
 $result = $conn->query($sql_select);
 
 if ($result->num_rows > 0) {
-	// Output taggers
+    // Output taggers
     echo '<h2>The following people have tagged this wall:</h2>';
     echo '<table>';
     echo '<tr><th>Tagger</th>';
