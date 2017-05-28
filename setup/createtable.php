@@ -22,7 +22,9 @@ if ($conn->connect_error) {
 // End of Standard MySQL database connectivity
 // ***********************************************
 
-//*** Azure MySQL Connection Strings
+// ***********************************************
+// Azure MySQL Connection Strings
+// ***********************************************
 //*** Uncomment the sections below to use on Azure websites with MySQL In App
 //*** Make sure to comment out the Standard MySQL Connection Strings above
 
