@@ -12,6 +12,7 @@ The table for the application will be created by the createtable.php file.<br />
 Take note of the mysql hostname, database name, username and username password. Modify the createtable.php and index.php file to use that information.<br />
 Copy the folders and files to a directory under the web root or to the web root itself.<br />
 Run http://website/setup/createtable.php to create the database table. It will indicate if it is successful.<br />
+(For security, delete the entire setup/ folder after successfully creating the table.)<br />
 Open http://website/index.php and look at the page. This is the only page that the user's will access.</p>
 
 <p>Invite others to "tag" your wall.</p>
