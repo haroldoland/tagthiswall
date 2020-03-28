@@ -172,7 +172,7 @@ if ( !empty($_POST)) {
         $stmt->close();
 
         echo '<p>';
-	echo '<div class="row"><br><div class="col-xs-12 col-md-6 col-md-offset-3"><div class="alert alert-danger">';
+	echo '<div class="row justify-content-center"><br><div class="col-xs-12 col-md-6 col-md-offset-3"><div class="alert alert-danger">';
         echo '   <span style="color: DarkRed;font-family: \'Gloria Hallelujah\';font-size: 30px;"><strong>You have tagged this wall!</strong>';
         echo '</div></div></div> <!-- end alert -->';
     } // end if valid
