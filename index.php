@@ -4,7 +4,7 @@
     <meta name="keywords" content="digital grafitti, block wall" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Gloria Hallelujah" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Margarine" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=McLaren" rel="stylesheet"> 
@@ -37,7 +37,7 @@
 
 <form class="form-horizontal" action="index.php" method="post" enctype="multipart/form-data">
 
-<div class="form-group <?php echo !empty($cl_taggerError)?'error':'';?>">
+<div class="form-group row <?php echo !empty($cl_taggerError)?'error':'';?>">
     <label class="col-sm-3 control-label">Tagger</label>
     <div class="col-sm-7">
        <input name="cl_tagger" type="text" class="form-control" maxlength="30" placeholder="Tagger Name" value="<?php echo !empty($cl_tagger)?$cl_tagger:'';?>">
@@ -49,7 +49,7 @@
     </div> <!-- end col-sm-7 -->
 </div> <!-- end form-group -->
 
-<div class="form-group <?php echo !empty($cl_messageError)?'error':'';?>">
+<div class="form-group row <?php echo !empty($cl_messageError)?'error':'';?>">
     <label class="col-sm-3 control-label">Message</label>
     <div class="col-sm-7">
        <input name="cl_message" type="text" class="form-control" maxlength="128" placeholder="Message" value="<?php echo !empty($cl_message)?$cl_message:'';?>">
@@ -171,7 +171,8 @@ if ( !empty($_POST)) {
 
         $stmt->close();
 
-        echo '<div class="row"><br><div class="col-xs-12 col-md-6 col-md-offset-3"><div class="alert alert-danger">';
+        echo '<p>';
+	echo '<div class="row"><br><div class="col-xs-12 col-md-6 col-md-offset-3"><div class="alert alert-danger">';
         echo '   <span style="color: DarkRed;font-family: \'Gloria Hallelujah\';font-size: 30px;"><strong>You have tagged this wall!</strong>';
         echo '</div></div></div> <!-- end alert -->';
     } // end if valid
