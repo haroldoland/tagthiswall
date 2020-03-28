@@ -38,7 +38,7 @@
 <form class="form-horizontal" action="index.php" method="post" enctype="multipart/form-data">
 
 <div class="form-group row <?php echo !empty($cl_taggerError)?'error':'';?>">
-    <label class="col-sm-3 control-label">Tagger</label>
+    <label class="col-sm-3 control-label text-right">Tagger</label>
     <div class="col-sm-7">
        <input name="cl_tagger" type="text" class="form-control" maxlength="30" placeholder="Tagger Name" value="<?php echo !empty($cl_tagger)?$cl_tagger:'';?>">
 
@@ -50,7 +50,7 @@
 </div> <!-- end form-group -->
 
 <div class="form-group row <?php echo !empty($cl_messageError)?'error':'';?>">
-    <label class="col-sm-3 control-label">Message</label>
+    <label class="col-sm-3 control-label text-right">Message</label>
     <div class="col-sm-7">
        <input name="cl_message" type="text" class="form-control" maxlength="128" placeholder="Message" value="<?php echo !empty($cl_message)?$cl_message:'';?>">
 
