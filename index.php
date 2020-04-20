@@ -1,9 +1,11 @@
-<html>
+<html lang="en-us">
 <head>
     <Title>Tag This Wall!</Title>
+    <meta name="description" content="Tag This Wall!" />
     <meta name="keywords" content="digital grafitti, block wall" />
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="en-us">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Gloria Hallelujah" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Margarine" rel="stylesheet"> 
